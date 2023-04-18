@@ -51,6 +51,79 @@ class LinkedList {
     }
     console.log(current.data);
   };
+
+  at = (index) => {
+    let current = this.head;
+    let currentIndex = 0;
+    while (current != null) {
+      if (currentIndex == index) {
+        return current.data;
+      } else {
+        currentIndex++;
+        current = current.next;
+      }
+    }
+  };
+
+  pop = () => {
+    let current = this.head;
+    let previous = null;
+    if (!current) {
+      return "No elements in this linked list!";
+    }
+
+    if (current.next == null) {
+      let data = this.head.data;
+      this.head = null;
+      size--;
+      return `Removed first element: ${data}`;
+    }
+
+    while (current.next != null) {
+      previous = current;
+      current = current.next;
+    }
+    previous.next = null;
+    size--;
+    return `Removed last element: ${current.data}`;
+  };
+
+  contains = (value) => {
+    let current = this.head;
+    while (current != null) {
+      if (current.data == value) {
+        return true;
+      } else {
+        current = current.next;
+      }
+    }
+    return false;
+  };
+
+  find = (value) => {
+    let counter = 0;
+    let current = this.head;
+    while (current != null) {
+      if (current.data == value) {
+        return counter;
+      } else {
+        counter++;
+        current = current.next;
+      }
+    }
+    return "Not in the list";
+  };
+
+  toString = () => {
+    let current = this.head;
+    let string = "";
+    while (current != null) {
+      string = string + `(${current.data}) -> `;
+      current = current.next;
+    }
+    string = string + "null";
+    return string;
+  };
 }
 
 let list = new LinkedList();
@@ -61,6 +134,4 @@ list.prepend(5);
 list.append("lol");
 list.prepend("fuck u");
 
-list.tail();
 list.print();
-console.log(list.head);
