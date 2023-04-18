@@ -124,6 +124,39 @@ class LinkedList {
     string = string + "null";
     return string;
   };
+
+  insertAt = (data, index) => {
+    let counter = 0;
+    let current = this.head;
+    let previous = null;
+    let newNode = new Node(data);
+    if (index == 0) {
+      newNode.next = this.head;
+    }
+    while (counter < index && current != null) {
+      previous = current;
+      current = current.next;
+      counter++;
+    }
+    previous.next = newNode;
+    newNode.next = current;
+  };
+
+  deleteAt = (index) => {
+    if (index == 0) {
+      this.head = this.head.next;
+    }
+    let previous = null;
+    let counter = 0;
+    let current = this.head;
+    while (counter < index && current != null) {
+      previous = current;
+      current = current.next;
+      counter++;
+    }
+    previous.next = current.next;
+    current.next = null;
+  };
 }
 
 let list = new LinkedList();
@@ -132,6 +165,5 @@ list.append(2);
 list.prepend(3);
 list.prepend(5);
 list.append("lol");
-list.prepend("fuck u");
-
-list.print();
+list.prepend("hi");
+list.prepend("yo");
