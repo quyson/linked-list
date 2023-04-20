@@ -157,6 +157,18 @@ class LinkedList {
     previous.next = current.next;
     current.next = null;
   };
+
+  reverse = () => {
+    let previous = null;
+    let current = this.head;
+    while (current != null) {
+      let next = current.next;
+      current.next = previous;
+      previous = current;
+      current = next;
+    }
+    this.head = previous;
+  };
 }
 
 let list = new LinkedList();
@@ -167,3 +179,8 @@ list.prepend(5);
 list.append("lol");
 list.prepend("hi");
 list.prepend("yo");
+
+list.print();
+list.reverse();
+console.log("----------");
+list.print();
